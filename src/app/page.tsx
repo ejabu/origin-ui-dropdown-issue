@@ -42,6 +42,7 @@ export default function Page() {
   });
 
   function onSubmit() {
+    console.log('====  to check');
     setOpen(false);
   }
 
@@ -70,12 +71,10 @@ export default function Page() {
         <p>We can not scroll easily using mouse wheel or trackpad when dropdown is inside the Modal</p>
         <br />
         <p>Please follow these steps:</p>
-        <p>
-          <ul className="list-decimal">
-						<li>click Open Dropdown</li>
-						<li>click Open Modal</li>
-					</ul>
-        </p>
+        <ul className="list-decimal">
+          <li>click Open Dropdown</li>
+          <li>click Open Modal</li>
+        </ul>
         <br />
         <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
           <DropdownMenuTrigger asChild>
@@ -93,7 +92,7 @@ export default function Page() {
               <DialogDescription>Try to open and scroll this dropdown</DialogDescription>
             </DialogHeader>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={() => onSubmit()} className="space-y-6">
                 <FormField
                   control={form.control}
                   name="customFramework"
@@ -105,15 +104,13 @@ export default function Page() {
                           <SelectWithSearch value={field.value ?? "-"} onChange={(value) => field.onChange(value)} />
                         </div>
                       </FormControl>
-                      <FormDescription>
-                        The dropdown is not scrollable using Mouse Wheel or Trackpad.
-                      </FormDescription>
+                      <FormDescription>The dropdown is not scrollable using Mouse Wheel or Trackpad.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <DialogFooter>
-                  <Button>Save</Button>
+                  <Button type="submit">Close</Button>
                 </DialogFooter>
               </form>
             </Form>
